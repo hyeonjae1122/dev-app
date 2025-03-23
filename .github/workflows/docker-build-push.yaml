@@ -55,7 +55,7 @@ jobs:
 
     - name: Success message
       if: success()
-      run: echo "Docker image has been built and pushed successfully: $REPOSITORY_URI:${{ env.VERSION }}"
+      run: echo "Docker image has been built and pushed successfully $REPOSITORY_URI:${{ env.VERSION }}"
 
     - name: Failure message
       if: failure()
