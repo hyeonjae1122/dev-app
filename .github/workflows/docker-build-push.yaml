@@ -16,7 +16,7 @@ jobs:
     - name: Checkout code from repository
       uses: actions/checkout@v2
       with:
-        repository: 'hyeonjae/dev-app'
+        repository: 'hyeonjaelee/dev-app'
         ref: 'main'
         token: ${{ secrets.GITHUB_TOKEN }}
 
