@@ -56,7 +56,7 @@ jobs:
     - name: Checkout ops-deploy repository
       uses: actions/checkout@v2
       with:
-        repository: 'devops/ops-deploy'
+        repository: 'hyeonjae1122/ops-deploy'
         ref: 'main'
         token: ${{ secrets.GITHUB_TOKEN }}
 
