@@ -53,6 +53,24 @@ jobs:
         docker push $REPOSITORY_URI:${{ env.VERSION }}
         docker push $REPOSITORY_URI:latest
 
+    - name: Checkout ops-deploy repository
+      uses: actions/checkout@v2
+      with:
+        repository: 'devops/ops-deploy'
+        ref: 'main'
+        token: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Update version in ops-deploy repository
+      run: |
+        OLDVER=$(cat dev-app/VERSION)
+        NEWVER=${{ env.VERSION }}
+        sed -i -e "s/$OLDVER/$NEWVER/" dev-app/timeserver.yaml
+        sed -i -e "s/$OLDVER/$NEWVER/" dev-app/VERSION
+        git add ./dev-app
+        git commit -m "version update ${NEWVER}"
+        git push
+
+
     - name: Success message
       if: success()
       run: echo "Docker image has been built and pushed successfully $REPOSITORY_URI:${{ env.VERSION }}"
